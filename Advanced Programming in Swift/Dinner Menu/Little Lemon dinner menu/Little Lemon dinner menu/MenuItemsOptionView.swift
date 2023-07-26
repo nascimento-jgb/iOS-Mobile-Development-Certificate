@@ -5,6 +5,13 @@
 //  Created by Joao Nascimento on 26.7.2023.
 //
 
+//
+//  MenuItemsOptionView.swift
+//  Little Lemon dinner menu
+//
+//  Created by Joao Nascimento on 26.7.2023.
+//
+
 import SwiftUI
 
 struct MenuItemsOptionView: View {
@@ -71,4 +78,3 @@ struct MenuItemsOptionView_Previews: PreviewProvider {
             .environmentObject(SelectedFilters()) // Provide the environment object
     }
 }
-

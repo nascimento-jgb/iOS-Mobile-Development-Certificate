@@ -33,12 +33,19 @@ struct MenuItemView: View {
 }
 
 struct MenuItemView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        // Create an instance of the SelectedFilters class and set it as an environment object
+//        let selectedFilters = SelectedFilters()
+//
+//        return MenuItemView()
+//            .environmentObject(selectedFilters) // Provide the environment object
+//            .environment(\.colorScheme, .light) // Optional: Set the color scheme for the preview
+//    }
     static var previews: some View {
-        // Create an instance of the SelectedFilters class and set it as an environment object
-        let selectedFilters = SelectedFilters()
-
-        return MenuItemView()
-            .environmentObject(selectedFilters) // Provide the environment object
-            .environment(\.colorScheme, .light) // Optional: Set the color scheme for the preview
-    }
+            ZStack {
+                MenuItemView()
+                    .environmentObject(SelectedFilters())
+                    .environment(\.colorScheme, .light)
+            }
+        }
 }
