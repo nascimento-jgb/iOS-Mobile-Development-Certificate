@@ -9,38 +9,72 @@ import SwiftUI
 
 struct MenuItemView: View {
     @State private var isOptionViewPresented = false
-    
     @EnvironmentObject private var selectedFilters: SelectedFilters
-    
+    @ObservedObject private var viewModel = MenuViewViewModel()
+
     var body: some View {
-        NavigationView{
-            VStack{
-                //Menu items content to be added here
+        NavigationView {
+            ScrollView {
+            VStack(alignment: .leading) {
+                Text("Food")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .padding(.bottom, 5)
+                
+                // Display food menu items using LazyVGrid
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 16)], spacing: 16) {
+                    ForEach(viewModel.foodMenuItems.indices, id: \.self) { index in
+                        MenuItemCardView(item: viewModel.foodMenuItems[index])
+                    }
+                }
+                .padding()
+                
+                VStack(alignment: .leading) {
+                    Text("Drink")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .padding(.bottom, 5)
+                    
+                    // Display food menu items using LazyVGrid
+                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 16)], spacing: 16) {
+                        ForEach(viewModel.drinkMenuItems.indices, id: \.self) { index in
+                            MenuItemCardView(item: viewModel.drinkMenuItems[index])
+                        }
+                    }
+                }
+                .padding()
+                
+                VStack(alignment: .leading) {
+                    Text("Dessert")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .padding(.bottom, 5)
+                    
+                    // Display food menu items using LazyVGrid
+                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 16)], spacing: 16) {
+                        ForEach(viewModel.dessertMenuItems.indices, id: \.self) { index in
+                            MenuItemCardView(item: viewModel.dessertMenuItems[index])
+                        }
+                    }
+                }
+                .padding()
                 
             }
             .navigationBarTitle("Menu", displayMode: .inline)
-            .navigationBarItems(trailing: Button(action: {isOptionViewPresented = true}) {
+            .navigationBarItems(trailing: Button(action: { isOptionViewPresented = true }) {
                 Image(systemName: "slider.horizontal.3")
-            }
-            )
+            })
         }
+    }
         .sheet(isPresented: $isOptionViewPresented) {
-                    // Pass the @Binding only for isOptionViewPresented, directly use @EnvironmentObject for selectedFilters
-                    MenuItemsOptionView(isOptionViewPresented: $isOptionViewPresented)
-            }
-            .environmentObject(selectedFilters) // Provide the environment object
+            MenuItemsOptionView(isOptionViewPresented: $isOptionViewPresented)
+        }
+        .environmentObject(selectedFilters)
     }
 }
 
 struct MenuItemView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        // Create an instance of the SelectedFilters class and set it as an environment object
-//        let selectedFilters = SelectedFilters()
-//
-//        return MenuItemView()
-//            .environmentObject(selectedFilters) // Provide the environment object
-//            .environment(\.colorScheme, .light) // Optional: Set the color scheme for the preview
-//    }
+
     static var previews: some View {
             ZStack {
                 MenuItemView()
