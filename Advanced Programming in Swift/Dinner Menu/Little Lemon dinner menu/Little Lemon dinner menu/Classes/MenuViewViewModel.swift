@@ -104,23 +104,4 @@ class MenuViewViewModel: ObservableObject {
          return foodMenuItems + drinkMenuItems + dessertMenuItems
        }
      }
-    
-    func applyMostPopularFilter() {
-        filteredFoodMenuItems = foodMenuItems.sorted(by: { $0.ordersCount > $1.ordersCount })
-        filteredDrinkMenuItems = drinkMenuItems.sorted(by: { $0.ordersCount > $1.ordersCount })
-        filteredDessertMenuItems = dessertMenuItems.sorted(by: { $0.ordersCount > $1.ordersCount })
-    }
-
-    func applyPriceFilter() {
-        filteredFoodMenuItems = foodMenuItems.sorted(by: { $0.price < $1.price })
-        filteredDrinkMenuItems = drinkMenuItems.sorted(by: { $0.price < $1.price })
-        filteredDessertMenuItems = dessertMenuItems.sorted(by: { $0.price < $1.price })
-    }
-
-    func applyAZFilter() {
-        filteredFoodMenuItems = foodMenuItems.sorted(by: { $0.title < $1.title })
-        filteredDrinkMenuItems = drinkMenuItems.sorted(by: { $0.title < $1.title })
-        filteredDessertMenuItems = dessertMenuItems.sorted(by: { $0.title < $1.title })
-    }
-
 }

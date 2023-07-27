@@ -12,75 +12,66 @@ struct MenuItemView: View {
     @EnvironmentObject private var selectedFilters: SelectedFilters
     @ObservedObject private var viewModel = MenuViewViewModel()
     
-    var body: some View {
-        NavigationView {
-            ScrollView {
-                    //First Category - Food
-                    VStack(alignment: .leading) {
-                        if selectedFilters.foodSelected {
-                            Text("Food")
-                                .font(.title)
-                                .fontWeight(.bold)
-                                .padding(.bottom, 5)
-                            
-                            LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 16)], spacing: 16) {
-                                ForEach(viewModel.foodMenuItems.indices, id: \.self) { index in
-                                    MenuItemCardView(item: viewModel.foodMenuItems[index])
-                                }
-                            }
-                            .padding()
-                        }
-                    }
-                    
-                    //Second Category - Drink
-                    VStack(alignment: .leading) {
-                        if selectedFilters.drinkSelected {
-                            Text("Drink")
-                                .font(.title)
-                                .fontWeight(.bold)
-                                .padding(.bottom, 5)
-                            
-                            LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 16)], spacing: 16) {
-                                ForEach(viewModel.drinkMenuItems.indices, id: \.self) { index in
-                                    MenuItemCardView(item: viewModel.drinkMenuItems[index])
-                                }
-                            }
-                            .padding()
-                        }
-                    }
-                    
-                    //Third Category - Desserts
-                    VStack(alignment: .leading) {
-                        if selectedFilters.dessertSelected {
-                            Text("Dessert")
-                                .font(.title)
-                                .fontWeight(.bold)
-                                .padding(.bottom, 5)
-                            
-                            LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 16)], spacing: 16) {
-                                ForEach(viewModel.dessertMenuItems.indices, id: \.self) { index in
-                                    MenuItemCardView(item: viewModel.dessertMenuItems[index])
-                                }
-                            }
-                            .padding()
-                        }
-                    }
-                    
-                .navigationBarTitle("Menu", displayMode: .inline)
-                .navigationBarItems(trailing: Button(action: { isOptionViewPresented = true }) {
-                        Image(systemName: "slider.horizontal.3")
-                    })
-                }
+    // Function to get the filtered items based on the selected category
+    private func getFilteredItems(for category: MenuCategory) -> [MenuItemClass] {
+          let filteredItems: [MenuItemClass]
+        switch category {
+        case .Food:
+            filteredItems = viewModel.foodMenuItems
+        case .Drink:
+            filteredItems = viewModel.drinkMenuItems
+        case .Dessert:
+            filteredItems = viewModel.dessertMenuItems
+        case .All:
+            filteredItems = viewModel.foodMenuItems + viewModel.drinkMenuItems + viewModel.dessertMenuItems
         }
-        .sheet(isPresented: $isOptionViewPresented) {
-                MenuItemsOptionView(isOptionViewPresented: $isOptionViewPresented)
-        }
-        .environmentObject(selectedFilters)
-        .onAppear{
-            viewModel.selectedFilters = selectedFilters
+              
+        if selectedFilters.mostPopularSelected {
+            return filteredItems.sorted(by: { $0.ordersCount > $1.ordersCount })
+        } else if selectedFilters.priceSelected {
+            return filteredItems.sorted(by: { $0.price < $1.price })
+        } else if selectedFilters.azSelected {
+            return filteredItems.sorted(by: { $0.title < $1.title })
+        } else {
+            return filteredItems
         }
     }
-}
+    
+    var body: some View {
+         NavigationView {
+             ScrollView {
+                 ForEach(selectedFilters.getCategories(), id: \.self) { category in
+                     VStack(alignment: .leading) {
+                         if selectedFilters.getFilter(for: category) {
+                             Text(category.rawValue)
+                                 .font(.title)
+                                 .fontWeight(.bold)
+                                 .padding(.bottom, 5)
+
+                             LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 16)], spacing: 16) {
+                                 ForEach(getFilteredItems(for: category), id: \.id) { item in
+                                     MenuItemCardView(item: item)
+                                 }
+                             }
+                             .padding()
+                         }
+                     }
+                 }
+                 .navigationBarTitle("Menu", displayMode: .inline)
+                 .navigationBarItems(trailing: Button(action: { isOptionViewPresented = true }) {
+                     Image(systemName: "slider.horizontal.3")
+                 })
+             }
+         }
+         .sheet(isPresented: $isOptionViewPresented) {
+             MenuItemsOptionView(isOptionViewPresented: $isOptionViewPresented)
+         }
+         .environmentObject(selectedFilters)
+         .onAppear {
+             viewModel.selectedFilters = selectedFilters
+         }
+     }
+ }
 
 struct MenuItemView_Previews: PreviewProvider {
 

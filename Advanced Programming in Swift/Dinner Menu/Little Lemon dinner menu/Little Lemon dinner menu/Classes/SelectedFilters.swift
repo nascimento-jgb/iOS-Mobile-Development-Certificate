@@ -16,5 +16,32 @@ class SelectedFilters: ObservableObject {
     @Published var azSelected = false
     
     static let `default` = SelectedFilters()
+    
+    func getCategories() -> [MenuCategory] {
+            var categories: [MenuCategory] = []
+            if foodSelected {
+                categories.append(.Food)
+            }
+            if drinkSelected {
+                categories.append(.Drink)
+            }
+            if dessertSelected {
+                categories.append(.Dessert)
+            }
+            return categories
+        }
+
+        func getFilter(for category: MenuCategory) -> Bool {
+            switch category {
+            case .Food:
+                return foodSelected
+            case .Drink:
+                return drinkSelected
+            case .Dessert:
+                return dessertSelected
+            case .All:
+                return foodSelected && drinkSelected && dessertSelected
+            }
+        }
 }
 

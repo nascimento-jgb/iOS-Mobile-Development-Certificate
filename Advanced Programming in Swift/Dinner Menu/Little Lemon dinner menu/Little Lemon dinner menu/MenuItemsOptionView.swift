@@ -41,6 +41,7 @@ struct MenuItemsOptionView: View {
                     }
                     .padding(.leading, 20)
                     
+                    
                     Divider()
                         .padding(.vertical, 10)
                     
@@ -52,8 +53,12 @@ struct MenuItemsOptionView: View {
                     
                     VStack(alignment: .leading, spacing: 5) {
                         Toggle("Most Popular", isOn: $selectedFilters.mostPopularSelected)
-                        Toggle("Price $-$$$", isOn: $selectedFilters.priceSelected)
+                            .disabled(selectedFilters.priceSelected || selectedFilters.azSelected)
+                        Toggle("Price $-$$$", isOn:
+                                $selectedFilters.priceSelected)
+                            .disabled(selectedFilters.mostPopularSelected || selectedFilters.azSelected)
                         Toggle("A-Z", isOn: $selectedFilters.azSelected)
+                            .disabled(selectedFilters.mostPopularSelected || selectedFilters.priceSelected)
                     }
                     .padding(.leading, 20)
                     
