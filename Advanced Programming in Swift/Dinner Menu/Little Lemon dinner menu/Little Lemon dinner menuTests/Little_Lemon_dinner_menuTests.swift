@@ -8,29 +8,29 @@
 import XCTest
 @testable import Little_Lemon_dinner_menu
 
-final class Little_Lemon_dinner_menuTests: XCTestCase {
+final class MenuItemTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testMenuItemTitle() {
+        // Arrange
+        let title = "Burger"
+        let ingredients: [Ingredient] = [Ingredient(name: "Beef"), Ingredient(name: "Cheese")]
+
+        // Act
+        let menuItem = MenuItemClass(price: 10.99, title: title, menuCategory: .Food, ordersCount: 7, ingredients: ingredients)
+
+        // Assert
+        XCTAssertEqual(menuItem.title, title)
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+    func testMenuItemIngredients() {
+        // Arrange
+        let title = "Pizza"
+        let ingredients: [Ingredient] = [Ingredient(name: "Dough"), Ingredient(name: "Tomato Sauce"), Ingredient(name: "Cheese")]
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
+        // Act
+        let menuItem = MenuItemClass(price: 12.99, title: title, menuCategory: .Food, ordersCount: 8, ingredients: ingredients)
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+        // Assert
+        XCTAssertEqual(menuItem.ingredients, ingredients)
     }
-
 }
