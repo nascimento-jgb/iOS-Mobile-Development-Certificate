@@ -8,11 +8,13 @@
 import Foundation
 
 class SelectedFilters: ObservableObject {
-    @Published var foodSelected = false
-    @Published var drinkSelected = false
-    @Published var dessertSelected = false
+    @Published var foodSelected = true
+    @Published var drinkSelected = true
+    @Published var dessertSelected = true
     @Published var mostPopularSelected = false
     @Published var priceSelected = false
     @Published var azSelected = false
+    
+    static let `default` = SelectedFilters()
 }
 

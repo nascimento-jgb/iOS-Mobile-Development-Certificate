@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MenuItemDetailsView: View {
-    var item: MenuItem
+    var item: MenuItemClass
 
     var body: some View {
         VStack {
@@ -18,14 +18,19 @@ struct MenuItemDetailsView: View {
                 .padding()
 
             Text(item.title)
-                .font(.headline)
+                .bold()
+                .font(.title2)
                 .foregroundColor(.primary)
                 .padding(.bottom, 10)
-            // Additional information
-//            Text("Price: \(item.price)")
-//            Text("Orders Count: \(item.ordersCount)")
-
+            
+            //Additional information
+            Text(String(format: "Price: %.2f", item.price))
+            Text("Orders Count: \(item.ordersCount)")
+                .padding(.bottom, 10)
+            
             Text("Ingredients:")
+                .font(.title3)
+                .bold()
                 .padding(.bottom, 1)
             VStack(spacing: 4){
                 ForEach(item.ingredients, id: \.name) { ingredient in
@@ -41,9 +46,10 @@ struct MenuItemDetailsView: View {
 
 struct MenuItemDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        let mockMenuItem = MenuItem(title: "Item 1", ingredients: [Ingredient(name: "Ingredient 1"), Ingredient(name: "Ingredient 2")
-        ])
-        return MenuItemDetailsView(item: mockMenuItem)
+        
+        let sampleMenuItem = MenuItemClass(price: 10.99, title: "Burger", menuCategory: .Food, ordersCount: 6, ingredients: [Ingredient(name: "Beef"), Ingredient(name: "Cheese"), Ingredient(name: "Lettuce"), Ingredient(name: "Tomato"), Ingredient(name: "Onion"), Ingredient(name: "Pickles"), Ingredient(name: "Ketchup"), Ingredient(name: "Mustard")])
+        
+        return MenuItemDetailsView(item: sampleMenuItem)
     }
 }
 

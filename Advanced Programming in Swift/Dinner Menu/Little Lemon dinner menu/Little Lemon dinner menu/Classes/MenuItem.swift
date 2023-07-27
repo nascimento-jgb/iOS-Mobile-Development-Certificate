@@ -7,6 +7,17 @@
 
 import Foundation
 
+enum MenuCategory: String, CaseIterable {
+    case Food = "Food"
+    case Drink = "Drink"
+    case Dessert = "Dessert"
+    case All = "All"
+}
+
+struct Ingredient: Hashable {
+    var name: String
+}
+
 protocol MenuItemProtocol {
     var id: UUID { get }
     var price: Double { get }
@@ -26,10 +37,11 @@ class MenuItemClass: Identifiable, MenuItemProtocol {
     var totalPrice: Double = 0.0
     var ingredients: [Ingredient]
 
-    init(price: Double, title: String, menuCategory: MenuCategory, ingredients: [Ingredient]) {
+    init(price: Double, title: String, menuCategory: MenuCategory, ordersCount: Int, ingredients: [Ingredient]) {
         self.price = price
         self.title = title
         self.menuCategory = menuCategory
+        self.ordersCount = ordersCount
         self.ingredients = ingredients
     }
 }

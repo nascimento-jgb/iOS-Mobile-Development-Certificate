@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MenuItemCardView: View {
-    var item: MenuItem
+    var item: MenuItemClass
 
     var body: some View {
         NavigationLink(destination: MenuItemDetailsView(item: item)) {
@@ -32,10 +32,8 @@ struct MenuItemCardView: View {
 
 struct MenuItemCardView_Previews: PreviewProvider {
     static var previews: some View {
-        // Create a sample MenuItem for preview
-        let sampleMenuItem = MenuItem(title: "Sample Item", ingredients: [Ingredient(name: "Ingredient 1"), Ingredient(name: "Ingredient 2")])
+        let sampleMenuItem = MenuItemClass(price: 10.99, title: "Burger", menuCategory: .Food, ordersCount: 6, ingredients: [Ingredient(name: "Beef"), Ingredient(name: "Cheese"), Ingredient(name: "Lettuce"), Ingredient(name: "Tomato"), Ingredient(name: "Onion"), Ingredient(name: "Pickles"), Ingredient(name: "Ketchup"), Ingredient(name: "Mustard")])
         
-        // Pass the sample MenuItem to the MenuItemCardView
         return MenuItemCardView(item: sampleMenuItem)
     }
 }

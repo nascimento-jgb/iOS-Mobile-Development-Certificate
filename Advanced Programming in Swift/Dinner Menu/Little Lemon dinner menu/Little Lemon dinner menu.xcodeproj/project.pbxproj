@@ -18,8 +18,6 @@
 		B957F83D2A70FD9300EB44DD /* MenuItemsOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B957F83C2A70FD9300EB44DD /* MenuItemsOptionView.swift */; };
 		B957F83F2A70FDA200EB44DD /* MenuItemDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B957F83E2A70FDA200EB44DD /* MenuItemDetailsView.swift */; };
 		B957F8412A71135D00EB44DD /* SelectedFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = B957F8402A71135D00EB44DD /* SelectedFilters.swift */; };
-		B957F8432A716A0700EB44DD /* MenuCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B957F8422A716A0700EB44DD /* MenuCategory.swift */; };
-		B957F8452A716A1600EB44DD /* Ingredients.swift in Sources */ = {isa = PBXBuildFile; fileRef = B957F8442A716A1600EB44DD /* Ingredients.swift */; };
 		B957F8492A7171A600EB44DD /* MenuViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B957F8482A7171A600EB44DD /* MenuViewViewModel.swift */; };
 		B957F84B2A7173CE00EB44DD /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B957F84A2A7173CE00EB44DD /* MenuItem.swift */; };
 		B957F84D2A71792D00EB44DD /* MenuItemCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B957F84C2A71792D00EB44DD /* MenuItemCardView.swift */; };
@@ -57,8 +55,6 @@
 		B957F83C2A70FD9300EB44DD /* MenuItemsOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemsOptionView.swift; sourceTree = "<group>"; };
 		B957F83E2A70FDA200EB44DD /* MenuItemDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemDetailsView.swift; sourceTree = "<group>"; };
 		B957F8402A71135D00EB44DD /* SelectedFilters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedFilters.swift; sourceTree = "<group>"; };
-		B957F8422A716A0700EB44DD /* MenuCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCategory.swift; sourceTree = "<group>"; };
-		B957F8442A716A1600EB44DD /* Ingredients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredients.swift; sourceTree = "<group>"; };
 		B957F8482A7171A600EB44DD /* MenuViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewViewModel.swift; sourceTree = "<group>"; };
 		B957F84A2A7173CE00EB44DD /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		B957F84C2A71792D00EB44DD /* MenuItemCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemCardView.swift; sourceTree = "<group>"; };
@@ -121,7 +117,6 @@
 				B957F8142A70FCC100EB44DD /* Assets.xcassets */,
 				B957F8162A70FCC100EB44DD /* Preview Content */,
 				B957F8462A716C4000EB44DD /* Classes */,
-				B957F8472A716C6300EB44DD /* Enums */,
 			);
 			path = "Little Lemon dinner menu";
 			sourceTree = "<group>";
@@ -159,15 +154,6 @@
 				B957F84A2A7173CE00EB44DD /* MenuItem.swift */,
 			);
 			path = Classes;
-			sourceTree = "<group>";
-		};
-		B957F8472A716C6300EB44DD /* Enums */ = {
-			isa = PBXGroup;
-			children = (
-				B957F8422A716A0700EB44DD /* MenuCategory.swift */,
-				B957F8442A716A1600EB44DD /* Ingredients.swift */,
-			);
-			path = Enums;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -300,13 +286,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B957F8452A716A1600EB44DD /* Ingredients.swift in Sources */,
 				B957F8132A70FCC000EB44DD /* ContentView.swift in Sources */,
 				B957F84D2A71792D00EB44DD /* MenuItemCardView.swift in Sources */,
 				B957F83B2A70FD8300EB44DD /* MenuItemView.swift in Sources */,
 				B957F8112A70FCC000EB44DD /* Little_Lemon_dinner_menuApp.swift in Sources */,
 				B957F8492A7171A600EB44DD /* MenuViewViewModel.swift in Sources */,
-				B957F8432A716A0700EB44DD /* MenuCategory.swift in Sources */,
 				B957F83D2A70FD9300EB44DD /* MenuItemsOptionView.swift in Sources */,
 				B957F8412A71135D00EB44DD /* SelectedFilters.swift in Sources */,
 				B957F83F2A70FDA200EB44DD /* MenuItemDetailsView.swift in Sources */,
