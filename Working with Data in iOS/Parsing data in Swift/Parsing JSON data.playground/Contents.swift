@@ -32,3 +32,21 @@ let decoder = JSONDecoder()
 let recipes = try! decoder.decode([Recipe].self, from: recipesData)
 
 recipes.forEach {print("\($0.title) with a rating of \($0.rating).")}
+
+//import Foundation
+//
+//let jsonString = """
+//{
+//    "name" : "John"
+//}
+//"""
+//
+//struct User: Decodable {
+//    let name: String
+//}
+//
+//let jsonData = Data(jsonString.utf8)
+//let decoder = JSONDecoder()
+//
+//let user = try! decoder.decode(User.self, from: jsonData)
+//print(user.name)
